@@ -6,7 +6,7 @@ add_library(analysis
            DependencyGraphNode.cpp
            AANoop.cpp
            MemorySSANodes.cpp
-           Abstractelement.cpp
+           AbstractElement.cpp
            Loops.cpp
            PointsTo.cpp
 #           Cycles.cpp

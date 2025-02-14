@@ -5,7 +5,7 @@
 #include "Lir/LirInterfaces.h"
 #include "Lir/LirTypes.h"
 
-#include <mlir/IR/FunctionInterfaces.h>
+#include <mlir/Interfaces/FunctionInterfaces.h>
 #include <mlir/IR/OpImplementation.h>
 #include <mlir/IR/Operation.h>
 #include <mlir/IR/Region.h>

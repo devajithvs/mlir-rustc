@@ -1,5 +1,5 @@
 add_executable(rustc-opt
-           Main.cpp
+           main.cpp
            )
 
 target_include_directories(rustc-opt PRIVATE  ../../code/include)
