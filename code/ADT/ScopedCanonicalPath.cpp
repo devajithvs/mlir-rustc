@@ -1,7 +1,7 @@
 #include "ADT/ScopedCanonicalPath.h"
 
 #include <algorithm>
-
+#include <cassert>
 namespace rust_compiler::adt {
 
 ScopedCanonicalPathScope::ScopedCanonicalPathScope(ScopedCanonicalPath *storage,

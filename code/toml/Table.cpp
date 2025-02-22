@@ -1,5 +1,5 @@
 #include "Toml/Table.h"
-
+#include <cassert>
 #include "Toml/KeyValuePair.h"
 
 namespace rust_compiler::toml {
