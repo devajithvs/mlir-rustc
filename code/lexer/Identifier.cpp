@@ -2,6 +2,7 @@
 
 #include <unicode/ucnv.h>
 #include <unicode/utext.h>
+#include <cassert>
 #include <unicode/utf8.h>
 
 namespace rust_compiler::lexer {

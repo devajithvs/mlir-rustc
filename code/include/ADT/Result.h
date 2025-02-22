@@ -3,6 +3,7 @@
 #include <cassert>
 #include <optional>
 #include <variant>
+#include <string>
 
 namespace rust_compiler::adt {
 
