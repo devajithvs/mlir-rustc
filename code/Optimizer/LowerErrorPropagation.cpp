@@ -5,6 +5,7 @@
 #include <mlir/IR/Operation.h>
 
 #include <mlir/IR/BuiltinOps.h>
+#include <mlir/Pass/Pass.h>
 
 namespace rust_compiler::optimizer {
 #define GEN_PASS_DEF_LOWERERRORPROPAGATIONPASS

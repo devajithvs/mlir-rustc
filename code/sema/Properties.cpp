@@ -155,6 +155,8 @@ std::string Property2String(PropertyKind kind) {
   case PropertyKind::UNKNOWN:
     return "unknown";
   }
+  // FIXME: Handle default
+  return "unknown";
 }
 
 } // namespace rust_compiler::sema

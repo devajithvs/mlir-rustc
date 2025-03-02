@@ -13,6 +13,7 @@
 #include <mlir/IR/Operation.h>
 #include <mlir/IR/Value.h>
 #include <mlir/Support/LogicalResult.h>
+#include <mlir/Pass/Pass.h>
 #include <optional>
 #include <set>
 

@@ -86,6 +86,7 @@ Parser::parseExpressionWithoutBlock(std::span<ast::OuterAttribute> outer,
       return expr;
     }
     }
+    return expr;
   }
 }
 

@@ -249,6 +249,7 @@ std::string Token2String(TokenKind kind) {
     return std::string("~");
   }
   }
+  return "";
 }
 
 //std::string Token::toString() {

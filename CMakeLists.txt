@@ -9,6 +9,8 @@ set (CMAKE_CXX_EXTENSIONS OFF)
 
 #add_compile_options(-fsanitize=address)
 #add_link_options(-fsanitize=address)
+add_compile_options(-Wno-return-type)
+add_compile_options(-w)
 
 include(CheckTypeSize)
 

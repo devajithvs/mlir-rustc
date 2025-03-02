@@ -9,7 +9,7 @@
 #include <llvm/Support/Debug.h>
 #include <llvm/Support/WithColor.h>
 #include <mlir/Dialect/Func/IR/FuncOps.h>
-#include <mlir/IR/BlockAndValueMapping.h>
+#include <mlir/IR/IRMapping.h>
 #include <mlir/IR/Builders.h>
 #include <mlir/IR/BuiltinTypes.h>
 #include <mlir/IR/Dialect.h>

@@ -5,8 +5,9 @@
 #include "Mir/MirInterfaces.h"
 #include "Mir/MirTypes.h"
 
-#include <mlir/IR/FunctionInterfaces.h>
+#include <mlir/Interfaces/FunctionInterfaces.h> 
 #include <mlir/IR/OpImplementation.h>
+#include <mlir/Pass/Pass.h>
 #include <mlir/IR/Operation.h>
 #include <mlir/IR/Region.h>
 #include <mlir/IR/TypeRange.h>

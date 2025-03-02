@@ -1,4 +1,5 @@
 #include "Sema/Autoderef.h"
+#include <cassert>
 
 namespace rust_compiler::sema {
 

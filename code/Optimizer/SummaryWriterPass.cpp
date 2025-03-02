@@ -5,6 +5,7 @@
 #include <llvm/Demangle/Demangle.h>
 #include <mlir/Dialect/Func/IR/FuncOps.h>
 #include <mlir/IR/BuiltinOps.h>
+#include <mlir/Pass/Pass.h>
 #include <string>
 
 namespace rust_compiler::optimizer {

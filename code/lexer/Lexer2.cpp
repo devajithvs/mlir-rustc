@@ -1144,8 +1144,8 @@ Token Lexer::lexChar() {
 }
 
 bool Lexer::isEmoji() {
-  return u_hasBinaryProperty(peek(0), UCHAR_EMOJI) &&
-         u_hasBinaryProperty(peek(0), UCHAR_BASIC_EMOJI);
+  return u_hasBinaryProperty(peek(0), UCHAR_EMOJI); 
+  // && u_hasBinaryProperty(peek(0), UCHAR_BASIC_EMOJI);
 }
 
 Token Lexer::lexIdentifierOrUnknownPrefix() {

@@ -19,6 +19,7 @@ std::string ExpressionWithBlockKind2String(ExpressionWithBlockKind kind) {
   case ExpressionWithBlockKind::MatchExpression:
     return "matc expression";
   }
+  return "";
 }
 
 } // namespace rust_compiler::ast
