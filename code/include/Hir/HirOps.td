@@ -46,8 +46,7 @@ def PredicateLoopExpressionOp : Hir_Op<"while",
 
   let extraClassDeclaration = [{
     mlir::Value getConditionValue() { return getRhs(); }
-
-    mlir::Region& getLoopBody()  { return getRegion();}
+    llvm::SmallVector<mlir::Region *> getLoopRegions()  { return {&getRegion()};}
   }];
 
 
@@ -67,7 +66,7 @@ def InfiniteLoopOp : Hir_Op<"loop",
   }];
 
   let extraClassDeclaration = [{
-    mlir::Region& getLoopBody()  { return getRegion();}
+    llvm::SmallVector<mlir::Region *> getLoopRegions()  { return {&getRegion()};}
   }];
 
   let regions = (region AnyRegion:$region);

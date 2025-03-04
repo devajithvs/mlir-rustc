@@ -24,15 +24,15 @@ using namespace rust_compiler::hir;
 #include "Hir/HirTypes.cpp.inc"
 
 
-unsigned
+llvm::TypeSize
 StructType::getTypeSizeInBits(const ::mlir::DataLayout &dataLayout,
                               ::mlir::DataLayoutEntryListRef params) const {
   if (!size)
     computeSizeAndAlignment(dataLayout);
-  return *size * 8;
+  return llvm::TypeSize::getFixed(*size * 8);
 }
 
-unsigned
+uint64_t
 StructType::getABIAlignment(const ::mlir::DataLayout &dataLayout,
                             ::mlir::DataLayoutEntryListRef params) const {
   if (!align)
@@ -40,7 +40,7 @@ StructType::getABIAlignment(const ::mlir::DataLayout &dataLayout,
   return *align;
 }
 
-unsigned
+uint64_t
 StructType::getPreferredAlignment(const ::mlir::DataLayout &dataLayout,
                                   ::mlir::DataLayoutEntryListRef params) const {
   llvm_unreachable("NYI");
