@@ -1,8 +1,3 @@
-#include "Mir/MirOpsInterfaces.h"
+#include "Mir/MirInterfaces.h"
 
-#include "Mir/MirOpsInterfaces.cpp.inc"
-
-namespace rust_compiler::Mir {
-
-
-}
+// #include "Mir/MirInterfaces.cpp.inc"

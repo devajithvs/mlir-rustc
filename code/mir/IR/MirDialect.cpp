@@ -71,7 +71,7 @@ struct MirInlinerInterface : public DialectInlinerInterface {
   }
 
   void handleTerminator(Operation *op,
-                        ArrayRef<Value> valuesToReplace) const override {
+                        mlir::ValueRange valuesToReplace) const override {
     // Only "Mir.return" needs to be handled here.
     auto returnOp = llvm::cast<mlir::func::ReturnOp>(op);
 
@@ -95,7 +95,7 @@ void MirDialect::initialize() {
 #include "Mir/MirOps.cpp.inc"
       >();
   addInterfaces<MirInlinerInterface>();
-  addTypes<StructType>();
+  // addTypes<StructType>();
 }
 
 namespace rust_compiler::Mir {

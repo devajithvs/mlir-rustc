@@ -8,7 +8,7 @@ include "MirDialect.td"
 include "MirTypes.td"
 include "MirAttr.td"
 include "mlir/IR/BuiltinAttributes.td"
-include "MirInterfaces.td"
+include "MirOpsInterfaces.td"
 include "mlir/Interfaces/ControlFlowInterfaces.td"
 
 // Ops
