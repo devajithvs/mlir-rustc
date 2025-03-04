@@ -2,7 +2,7 @@
 
 #include "Mir/MirAttr.h"
 #include "Mir/MirDialect.h"
-#include "Mir/MirInterfaces.h"
+#include "Mir/MirOpsInterfaces.h"
 #include "Mir/MirOps.h"
 #include "Mir/MirTypes.h"
 
