@@ -1,16 +1,14 @@
 #ifndef HirOps
 #define HirOps
 
-include "mlir/IR/SymbolInterfaces.td"
-include "mlir/Interfaces/SideEffectInterfaces.td"
 include "mlir/Interfaces/ControlFlowInterfaces.td"
 include "mlir/Interfaces/LoopLikeInterface.td"
 include "mlir/IR/BuiltinAttributes.td"
 include "HirDialect.td"
 include "HirOpsBase.td"
 include "HirTypes.td"
-include "HirPattern.td"
 include "HirAttr.td"
+include "HirOpsBase.td"
 include "HirOpsInterfaces.td"
 
 // Ops
