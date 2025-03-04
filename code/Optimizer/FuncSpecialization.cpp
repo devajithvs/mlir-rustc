@@ -28,7 +28,7 @@ class Constant {
 
 public:
   mlir::Value getValue(OperationFolder &folder, mlir::Block *block) {
-    return folder.getOrCreateConstant(block, dialect, attr, type, loc);
+    return folder.getOrCreateConstant(block, dialect, attr, type);
   }
 };
 

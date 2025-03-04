@@ -138,7 +138,7 @@ void CodeGenAction::generateObjectFile(llvm::raw_pwrite_stream &os) {
   assert(tlii && "Failed to create TargetLibraryInfo");
   codeGenPasses.add(new llvm::TargetLibraryInfoWrapperPass(*tlii));
 
-  llvm::CodeGenFileType cgft = llvm::CodeGenFileType::CGFT_ObjectFile;
+  llvm::CodeGenFileType cgft = llvm::CodeGenFileType::ObjectFile;
   if (tm->addPassesToEmitFile(codeGenPasses, os, nullptr, cgft)) {
     // unsigned diagID =
     //     diags.getCustomDiagID(clang::DiagnosticsEngine::Error,
@@ -231,7 +231,7 @@ void CodeGenAction::setUpTargetMachine() {
       theTriple, /*CPU=*/cpu,
       /*Features=*/"", llvm::TargetOptions(),
       /*Reloc::Model=*/Reloc::PIC_,
-      /*CodeModel::Model=*/std::nullopt, llvm::CodeGenOpt::Level::Aggressive));
+      /*CodeModel::Model=*/std::nullopt, llvm::CodeGenOptLevel::Aggressive));
   assert(tm && "Failed to create TargetMachine");
 }
 

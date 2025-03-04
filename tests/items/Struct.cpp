@@ -20,7 +20,7 @@ TEST(StructTest, CheckStruct2) {
   Parser parser = {ts};
 
   Result<std::shared_ptr<rust_compiler::ast::Item>, std::string> result =
-      parser.parseStruct(std::nullopt);
+      parser.parseStruct({}, std::nullopt);
 
   if (!result)
     llvm::errs() << result.getError() << "\n";

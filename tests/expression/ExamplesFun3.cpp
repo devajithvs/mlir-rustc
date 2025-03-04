@@ -18,7 +18,7 @@ TEST(ExamplesFun3Test, CheckFun1) {
   Parser parser = {ts};
 
   Result<std::shared_ptr<rust_compiler::ast::Item>, std::string> result =
-      parser.parseFunction(std::nullopt);
+      parser.parseFunction({}, std::nullopt);
 
   EXPECT_TRUE(result.isOk());
 };
@@ -32,7 +32,7 @@ TEST(ExamplesFun3Test, CheckFun2) {
   Parser parser = {ts};
 
   Result<std::shared_ptr<rust_compiler::ast::Item>, std::string> result =
-      parser.parseFunction(std::nullopt);
+      parser.parseFunction({}, std::nullopt);
 
   EXPECT_TRUE(result.isOk());
 };
@@ -46,7 +46,7 @@ TEST(ExamplesFun3Test, CheckFun3) {
   Parser parser = {ts};
 
   Result<std::shared_ptr<rust_compiler::ast::Item>, std::string> result =
-      parser.parseFunction(std::nullopt);
+      parser.parseFunction({}, std::nullopt);
 
   EXPECT_TRUE(result.isOk());
 };
@@ -60,7 +60,7 @@ TEST(ExamplesFun3Test, CheckFun4) {
   Parser parser = {ts};
 
   Result<std::shared_ptr<rust_compiler::ast::Item>, std::string> result =
-      parser.parseFunction(std::nullopt);
+      parser.parseFunction({}, std::nullopt);
 
   EXPECT_TRUE(result.isOk());
 };
@@ -75,7 +75,7 @@ TEST(ExamplesFun3Test, CheckFun5) {
   Parser parser = {ts};
 
   Result<std::shared_ptr<rust_compiler::ast::Item>, std::string> result =
-      parser.parseFunction(std::nullopt);
+      parser.parseFunction({}, std::nullopt);
 
   EXPECT_TRUE(result.isOk());
 };
@@ -90,7 +90,7 @@ TEST(ExamplesFun3Test, CheckFun6) {
   Parser parser = {ts};
 
   Result<std::shared_ptr<rust_compiler::ast::Item>, std::string> result =
-      parser.parseFunction(std::nullopt);
+      parser.parseFunction({}, std::nullopt);
 
   EXPECT_TRUE(result.isOk());
 };

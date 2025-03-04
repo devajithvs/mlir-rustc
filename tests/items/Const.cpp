@@ -18,7 +18,7 @@ TEST(ConstTest, CheckConst2) {
   Parser parser = {ts};
 
   Result<std::shared_ptr<rust_compiler::ast::Item>, std::string> result =
-      parser.parseConstantItem(std::nullopt);
+      parser.parseConstantItem({}, std::nullopt);
 
   EXPECT_TRUE(result.isOk());
 };

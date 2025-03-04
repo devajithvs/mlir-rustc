@@ -19,7 +19,7 @@ TEST(TypeAliasTest, CheckAlias2) {
   Parser parser = {ts};
 
   Result<std::shared_ptr<rust_compiler::ast::Item>, std::string> result =
-      parser.parseTypeAlias(std::nullopt);
+      parser.parseTypeAlias({}, std::nullopt);
 
   if (result.isErr())
     llvm::errs() << result.getError() << "\n";

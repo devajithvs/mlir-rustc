@@ -19,7 +19,7 @@ TEST(ImplementationTest, CheckImplStruct2) {
   Parser parser = {ts};
 
   Result<std::shared_ptr<rust_compiler::ast::Item>, std::string> result =
-    parser.parseImplementation({});
+    parser.parseImplementation({}, std::nullopt);
 
   EXPECT_TRUE(result.isOk());
 };

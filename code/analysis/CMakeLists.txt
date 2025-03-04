@@ -21,5 +21,6 @@ llvm_map_components_to_libnames(llvm_libs)
 
 target_link_libraries(analysis
         PRIVATE
+        sema
         ${llvm_libs}
         )

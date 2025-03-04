@@ -96,8 +96,7 @@ mlir::LogicalResult Attributor::runTillFixpoint() {
 
     // Add elements to the changed set if they have been created in the last
     // iteration.
-
-    llvm::SetVector<DependencyGraphNode *> newNodes = depGraph.getNewNodes();
+    llvm::SetVector<DependencyGraphNode *, std::vector<DependencyGraphNode *>, llvm::DenseSet<DependencyGraphNode *>> newNodes = depGraph.getNewNodes();
     depGraph.resetNewNodes();
 
     //FIXME: changedElements.append(newNodes.begin(), newNodes.end());

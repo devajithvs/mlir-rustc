@@ -3,7 +3,7 @@
 #include "TargetInfo/CallWithLayoutAndCode.h"
 #include "TargetInfo/TypeBuilder.h"
 
-#include <llvm/ADT/Triple.h>
+#include <llvm/TargetParser/Triple.h>
 #include <memory>
 #include <span>
 

@@ -23,7 +23,7 @@ fn foo() {
   Parser parser = {ts};
 
   Result<std::shared_ptr<rust_compiler::ast::Item>, std::string> result =
-      parser.parseFunction(std::nullopt);
+      parser.parseFunction({}, std::nullopt);
 
   if (result.isErr())
     llvm::errs() << result.getError() << "\n";
@@ -44,7 +44,7 @@ fn foo() {
   Parser parser = {ts};
 
   Result<std::shared_ptr<rust_compiler::ast::Item>, std::string> result =
-      parser.parseFunction(std::nullopt);
+      parser.parseFunction({}, std::nullopt);
 
   if (result.isErr())
     llvm::outs() << result.getError() << "\n";
@@ -66,7 +66,7 @@ fn foo() {
   Parser parser = {ts};
 
   Result<std::shared_ptr<rust_compiler::ast::Item>, std::string> result =
-      parser.parseFunction(std::nullopt);
+      parser.parseFunction({}, std::nullopt);
 
   if (result.isErr())
     llvm::outs() << result.getError() << "\n";
@@ -89,7 +89,7 @@ fn foo() {
   Parser parser = {ts};
 
   Result<std::shared_ptr<rust_compiler::ast::Item>, std::string> result =
-      parser.parseFunction(std::nullopt);
+      parser.parseFunction({}, std::nullopt);
 
   if (result.isErr())
     llvm::outs() << result.getError() << "\n";
@@ -117,7 +117,7 @@ fn foo() {
   Parser parser = {ts};
 
   Result<std::shared_ptr<rust_compiler::ast::Item>, std::string> result =
-      parser.parseFunction(std::nullopt);
+      parser.parseFunction({}, std::nullopt);
 
   if (result.isErr())
     llvm::outs() << result.getError() << "\n";
@@ -145,7 +145,7 @@ fn foo() {
   Parser parser = {ts};
 
   Result<std::shared_ptr<rust_compiler::ast::Item>, std::string> result =
-      parser.parseFunction(std::nullopt);
+      parser.parseFunction({}, std::nullopt);
 
   if (result.isErr())
     llvm::outs() << result.getError() << "\n";

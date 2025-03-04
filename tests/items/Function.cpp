@@ -22,7 +22,7 @@ fn main() {
   Parser parser = {ts};
 
   Result<std::shared_ptr<rust_compiler::ast::Item>, std::string> result =
-      parser.parseFunction(std::nullopt);
+      parser.parseFunction({}, std::nullopt);
 
   EXPECT_TRUE(result.isOk());
 };
@@ -39,7 +39,7 @@ fn main() {
   Parser parser = {ts};
 
   Result<std::shared_ptr<rust_compiler::ast::Item>, std::string> result =
-      parser.parseFunction(std::nullopt);
+      parser.parseFunction({}, std::nullopt);
 
   EXPECT_TRUE(result.isOk());
 };
@@ -56,7 +56,7 @@ fn main() {
   Parser parser = {ts};
 
   Result<std::shared_ptr<rust_compiler::ast::Item>, std::string> result =
-      parser.parseFunction(std::nullopt);
+      parser.parseFunction({}, std::nullopt);
 
   EXPECT_TRUE(result.isOk());
 };
@@ -73,7 +73,7 @@ fn main() {
   Parser parser = {ts};
 
   Result<std::shared_ptr<rust_compiler::ast::Item>, std::string> result =
-      parser.parseFunction(std::nullopt);
+      parser.parseFunction({}, std::nullopt);
 
   EXPECT_TRUE(result.isOk());
 };
@@ -90,7 +90,7 @@ fn main() {
   Parser parser = {ts};
 
   Result<std::shared_ptr<rust_compiler::ast::Item>, std::string> result =
-      parser.parseFunction(std::nullopt);
+      parser.parseFunction({}, std::nullopt);
 
   EXPECT_TRUE(result.isOk());
 };
@@ -111,7 +111,7 @@ fn main() {
   Parser parser = {ts};
 
   Result<std::shared_ptr<rust_compiler::ast::Item>, std::string> result =
-      parser.parseFunction(std::nullopt);
+      parser.parseFunction({}, std::nullopt);
 
   EXPECT_TRUE(result.isOk());
 };
@@ -128,7 +128,7 @@ fn foo(a: &[u32]) {
   Parser parser = {ts};
 
   Result<std::shared_ptr<rust_compiler::ast::Item>, std::string> result =
-      parser.parseFunction(std::nullopt);
+      parser.parseFunction({}, std::nullopt);
 
   if (!result)
     llvm::errs() << "error: " << result.getError() << "/n";
@@ -152,7 +152,7 @@ fn main() {
   Parser parser = {ts};
 
   Result<std::shared_ptr<rust_compiler::ast::Item>, std::string> result =
-      parser.parseFunction(std::nullopt);
+      parser.parseFunction({}, std::nullopt);
 
   EXPECT_TRUE(result.isOk());
 };
@@ -173,7 +173,7 @@ fn main() {
   Parser parser = {ts};
 
   Result<std::shared_ptr<rust_compiler::ast::Item>, std::string> result =
-      parser.parseFunction(std::nullopt);
+      parser.parseFunction({}, std::nullopt);
 
   EXPECT_TRUE(result.isOk());
 };

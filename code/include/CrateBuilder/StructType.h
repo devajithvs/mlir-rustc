@@ -1,6 +1,7 @@
 #pragma once
 
 #include <mlir/IR/BuiltinTypes.h>
+#include <mlir/IR/ExtensibleDialect.h>
 #include <string>
 
 namespace rust_compiler::crate_builder {

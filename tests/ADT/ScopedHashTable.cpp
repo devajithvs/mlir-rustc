@@ -1,6 +1,6 @@
 #include "ADT/ScopedHashTable.h"
 
-#include "Util.h"
+// #include "Util.h"
 #include "gtest/gtest.h"
 
 using namespace rust_compiler::adt;
