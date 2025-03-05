@@ -118,7 +118,7 @@ private:
 };
 
 /// An alias set is associated with a program point. A set of pairs of
-/// access paths that may alias.
+/// access path that may alias.
 class AliasSet {
 public:
   // next hack
@@ -140,63 +140,25 @@ private:
   std::set<AliasRelation> mayAliases;
 };
 
-class Function;
-
-class CallSite {
-  Function *fun;
-
-public:
-  Function *getFun() const { return fun; }
-};
-
-/// Alias instance (AI)
-class AliasInstance {
-  AliasRelation ar;
-  AliasSet sourceAliasSet; // SAS_c
-  CallSite c;
-
-public:
-  Function *getFun() const { return c.getFun(); }
-};
-
-/// Alias instance set
-class AliasInstanceSet {
-
-public:
-  AliasInstanceSet getSubset(mlir::Value) const;
-
-  AliasInstanceSet minus(const AliasInstanceSet &);
-
-  std::vector<AliasInstance> getSets() const;
-
-private:
-  std::set<AliasInstance> mayAliases;
-};
-
 class Function {
 public:
-  AliasInstanceSet getEntryAliasSet();
-  AliasInstanceSet getExitAliasSet();
+  AliasSet getEntryAliasSet();
+  AliasSet getExitAliasSet();
 
-  void setExitSet(const AliasSet &);
-
-  mlir::func::FuncOp getFuncOp();
-
+  void setExitSet(const AliasSet&);
 private:
-  AliasInstanceSet entryAliasInstanceSet;
-  AliasInstanceSet exitAliasInstanceSet;
+  AliasSet entryAliasSet;
+  AliasSet exitAliasSet;
 };
 
 class ControlFlowGraph {
 public:
-  void addEdge(llvm::StringRef from, llvm::StringRef to, Function *f);
+  void addEdge(llvm::StringRef from, llvm::StringRef to, mlir::func::FuncOp *f);
 
-  std::vector<Function *> getFunctions() const { return funs; };
-
-  std::vector<Function *> getCalleesOf(Function *) const;
+  std::vector<mlir::func::FuncOp *> getFunctions() const { return funs; };
 
 private:
-  std::vector<Function *> funs;
+  std::vector<mlir::func::FuncOp *> funs;
   llvm::StringMap<std::string> edges;
 };
 
@@ -221,14 +183,13 @@ public:
 private:
   void initialize(mlir::ModuleOp &mod);
   void buildInitialCfg(mlir::ModuleOp &mod);
-  bool analyzeFunction(Function *f);
+  bool analyzeFunction(mlir::func::FuncOp *f);
 
   /// joins or transfer functions
   void transferFunLoad(Function *f, const Load &);
   void transferFunStore(Function *f, const Store &);
   void transferFunCallOp(Function *f); // FIXME
 
-  Function *getFunction(mlir::func::FuncOp);
   ControlFlowGraph cfg;
   llvm::StringMap<std::unique_ptr<Function>> functions;
 };

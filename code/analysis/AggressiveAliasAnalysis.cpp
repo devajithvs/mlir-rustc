@@ -47,7 +47,7 @@ void AggressiveAliasAnalysis::initialize(mlir::ModuleOp &mod) {
   // iterate
   bool changed = false;
   do {
-    for (Function *f : cfg.getFunctions()) {
+    for (mlir::func::FuncOp *f : cfg.getFunctions()) {
       changed |= analyzeFunction(f);
     }
   } while (changed);
@@ -58,18 +58,19 @@ void AggressiveAliasAnalysis::buildInitialCfg(mlir::ModuleOp &mod) {
     for (Block &block : f.getBody()) {
       for (Operation &op : block) {
         if (auto callOp = mlir::dyn_cast<mlir::func::CallOp>(op)) {
-          cfg.addEdge(f.getName(), callOp.getCallee(), getFunction(f));
+          cfg.addEdge(f.getName(), callOp.getCallee(), &f);
         }
       }
     }
   });
 }
 
-bool AggressiveAliasAnalysis::analyzeFunction(Function *fun) {
+bool AggressiveAliasAnalysis::analyzeFunction(mlir::func::FuncOp *f) {
+  Function *fun = functions[f->getName()].get();
   // iterate
   bool changed = false;
   do {
-    for (Block &block : fun->getFuncOp().getBody()) {
+    for (Block &block : f->getBody()) {
       for (Operation &op : block) {
         if (auto load = mlir::dyn_cast<mlir::memref::LoadOp>(op)) {
           if (op.getNumResults() != 1) {
@@ -145,9 +146,9 @@ ModRefResult AggressiveAliasAnalysis::getModRef(Operation *op, Value location) {
 }
 
 void AggressiveAliasAnalysis::transferFunLoad(Function *f, const Load &load) {
-  AliasInstanceSet Aout;
+  AliasSet Aout;
 
-  AliasInstanceSet Ain = f->getEntryAliasSet();
+  AliasSet Ain = f->getEntryAliasSet();
   // AliasSet AinOfP = f->getEntryAliasSet().getSubset(load.getValue());
   /*
     (A_{IN} - A_{IN}(ma)) u
@@ -156,22 +157,24 @@ void AggressiveAliasAnalysis::transferFunLoad(Function *f, const Load &load) {
 
 void AggressiveAliasAnalysis::transferFunStore(Function *f,
                                                const Store &store) {
-//  AliasInstanceSet Ain = f->getEntryAliasSet();
-//  AliasInstanceSet AinOfP = Ain.getSubset(store.getAddress());
-//  AliasInstanceSet AinOfQ = Ain.getSubset(store.getValue());
-//  AliasInstanceSet tmp = Ain.minus(AinOfP);
-//
-//  AliasInstanceSet leftU = Ain.whereLeftIs(store.getAddress());
+  AliasSet Aout;
+
+  AliasSet Ain = f->getEntryAliasSet();
+  AliasSet AinOfP = Ain.getSubset(store.getAddress());
+  AliasSet AinOfQ = Ain.getSubset(store.getValue());
+  AliasSet tmp = Ain.minus(AinOfP);
+
+  AliasSet leftU = Ain.whereLeftIs(store.getAddress());
 
   /*
     (A_{IN} - (set difference) A_{IN}(ma)) union
    */
-  AliasInstanceSet result;
-//  for (AliasRelation &l : leftU.getSets())
-//    for (AliasRelation &r : AinOfQ.getSets())
-//      result.add(r.replaceWith(l.getLeft(), store.getValue()));
-//
-  //f->setExitSet(tmp.join(result));
+  AliasSet result;
+  for (AliasRelation &l : leftU.getSets())
+    for (AliasRelation &r : AinOfQ.getSets())
+      result.add(r.replaceWith(l.getLeft(), store.getValue()));
+
+  f->setExitSet(tmp.join(result));
 }
 
 } // namespace rust_compiler::analysis
