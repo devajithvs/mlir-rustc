@@ -21,7 +21,6 @@ add_library(optimizer
            FuncSpecialization.cpp
            LoopPlan.cpp
            MemoryAnalysis.cpp
-           TestAliasAnalysisPass.cpp
            LowerUtilsToLLVM.cpp
            )
 
