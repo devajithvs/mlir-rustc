@@ -25,6 +25,8 @@ add_library(TypeChecking
             TypeBoundsProbe.cpp
             TraitResolver.cpp
             Call.cpp
+            ../ReturnExpressionSearcher.cpp
+            ../Autoderef.cpp
            )
 
 target_include_directories(TypeChecking PRIVATE  ../../include)
