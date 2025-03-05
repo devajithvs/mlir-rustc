@@ -99,11 +99,6 @@ def FuncSpecialPass : Pass<"FuncSpecial", "mlir::ModuleOp"> {
   let description = "specializes funcs after SCCP";
 }
 
-def MemoryAnalysisPass : Pass<"MemoryAnalysis", "mlir::ModuleOp"> {
-  let summary = "memory analysis";
-  let description = "analyses memrefs";
-}
-
 def LowerUtilsToLLVMPass : Pass<"LowerUtilsToLLVM", "mlir::ModuleOp"> {
   let summary = "lower dialects to LLVM";
   let description = "lower dialects to LLVM";

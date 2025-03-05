@@ -20,7 +20,6 @@ add_library(optimizer
            DeadArgumentElimination.cpp
            FuncSpecialization.cpp
            LoopPlan.cpp
-           MemoryAnalysis.cpp
            LowerUtilsToLLVM.cpp
            )
 
