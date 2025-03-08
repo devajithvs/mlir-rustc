@@ -29,50 +29,17 @@ static const std::pair<FloatKind, std::string> FK[] = {
 
 std::optional<std::string> tryLexDecLiteral(std::string_view code) {
   std::string_view view = code;
-  std::string ws = "";
+  std::string ws;
 
-  if (view.size() > 0) {
-    // single digit
-    if (std::isdigit(view.front()) && not std::isdigit(view[1])) {
-      ws.push_back(view.front());
-      return ws;
-    }
-    if (std::isdigit(view.front()) && std::isdigit(view[1]) &&
-        not std::isdigit(view[2])) {
-      ws.push_back(view.front());
-      ws.push_back(view[1]);
-      return ws;
-    }
+  if (view.empty() || !std::isdigit(view.front()))
+    return std::nullopt;
 
-    if (std::isdigit(view.front()) && std::isdigit(view[1]) &&
-        std::isdigit(view[2]) && not std::isdigit(view[3])) {
-      ws.push_back(view.front());
-      ws.push_back(view[1]);
-      ws.push_back(view[2]);
-      return ws;
-    }
-
-    if (std::isdigit(view.front()) && std::isdigit(view[1]) &&
-        std::isdigit(view[2]) && std::isdigit(view[3]) &&
-        not std::isdigit(view[4])) {
-      ws.push_back(view.front());
-      ws.push_back(view[1]);
-      ws.push_back(view[2]);
-      ws.push_back(view[3]);
-      return ws;
-    }
-
-    while (view.size() > 0) {
-      if (std::isdigit(view.front())) {
-        ws.push_back(view.front());
-        view.remove_prefix(1);
-      } else {
-        return std::nullopt;
-      }
-    }
-    return ws;
+  while (!view.empty() && std::isdigit(view.front())) {
+    ws.push_back(view.front());
+    view.remove_prefix(1);
   }
-  return std::nullopt;
+
+  return ws;
 }
 
 std::string tryLexInlineComment(std::string_view code) {
