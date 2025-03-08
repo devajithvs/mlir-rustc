@@ -3,6 +3,7 @@
 
 #include <string>
 #include <functional>
+#include <optional>
 
 class Cursor {
 private:
@@ -28,9 +29,12 @@ public:
         return position >= input.size();
     }
 
-    inline void bump() {
-        if (position < input.size()) position++;
-    }
+    inline std::optional<char> bump() {
+        if (position < input.size()) {
+            return input[position++];
+        }
+        return std::nullopt;  // Return an empty optional instead of void
+    }    
 
     void eat_while(std::function<bool(char)> predicate) {
         while (!is_eof() && predicate(first())) {
@@ -43,6 +47,25 @@ public:
             bump();
         }
     }
+
+    // Store the previous character
+    char prev() const {
+        return (position == 0) ? '\0' : input[position - 1];
+    }
+
+    // Return the position of the current token
+    uint32_t pos_within_token() const {
+        return position;
+    }
+
+    // Reset position within a token
+    void reset_pos_within_token() {
+        position = 0;
+    }
+
+    std::optional<uint8_t> raw_double_quoted_string(uint32_t);
+
+
 };
 
 #endif // CURSOR_H

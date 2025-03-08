@@ -13,10 +13,10 @@ add_library(rust_lexer STATIC
 target_include_directories(rust_lexer PUBLIC include)
 
 # Unit tests
-# include(GoogleTest)
-# enable_testing()
-# add_executable(lexer_tests tests/LexerTests.cpp)
-# target_link_libraries(lexer_tests PRIVATE rust_lexer gtest gtest_main)
+include(GoogleTest)
+enable_testing()
+add_executable(lexer_tests tests/LexerTests.cpp)
+target_link_libraries(lexer_tests PRIVATE rust_lexer gtest gtest_main)
 
 
-add_test(NAME LexerTest COMMAND test_lexer)
+add_test(NAME LexerTest COMMAND lexer_tests)

@@ -129,8 +129,14 @@ class Token {
 public:
     TokenKind kind;
     uint32_t len;
+    std::optional<LiteralKind> literal_kind; // Store literal information if applicable
 
+    // Constructor for non-literal tokens
     Token(TokenKind kind, uint32_t len) : kind(kind), len(len) {}
+    
+    // Constructor for literal tokens
+    Token(TokenKind kind, LiteralKind lit_kind, uint32_t len)
+        : kind(kind), literal_kind(lit_kind), len(len) {}
 
     static Token newToken(TokenKind kind, uint32_t len) {
         return Token(kind, len);
