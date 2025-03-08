@@ -53,31 +53,35 @@ std::optional<size_t> strip_shebang(const std::string& input) {
 std::variant<std::monostate, RawStrErrorDetails> validate_raw_str(const std::string& input, uint32_t prefix_len) {
     assert(!input.empty());
     Cursor cursor(input);
+    // Move past the leading `r` or `br`.
     for (uint32_t i = 0; i < prefix_len; ++i) {
         if (!cursor.is_eof()) cursor.bump();
     }
 
-    uint32_t n_hashes = 0;
-    while (!cursor.is_eof() && cursor.first() == '#') {
-        ++n_hashes;
-        cursor.bump();
+    auto result = cursor.raw_double_quoted_string(prefix_len);
+
+    // If result contains an error, return it as a RawStrErrorDetails
+    if (std::holds_alternative<RawStrErrorDetails>(result)) {
+        return std::get<RawStrErrorDetails>(result);
     }
 
-    if (cursor.first() != '"') {
-        return RawStrErrorDetails(RawStrError::InvalidStarter, cursor.first());
-    }
-    cursor.bump();
-
-    while (!cursor.is_eof() && cursor.first() != '"') {
-        cursor.bump();
-    }
-
-    if (cursor.is_eof()) {
-        return RawStrErrorDetails(RawStrError::NoTerminator, '\0', n_hashes, 0);
-    }
-
-    cursor.bump();
+    // Otherwise, return `std::monostate` (equivalent to `Ok(())` in Rust)
     return std::monostate{};
+}
+
+std::vector<Token> tokenize(const std::string& input) {
+    std::vector<Token> tokens;
+    Cursor cursor(input);
+
+    while (true) {
+        Token token = cursor.advance_token();
+        if (token.kind == TokenKind::Eof) {
+            break;
+        }
+        tokens.push_back(token);
+    }
+
+    return tokens;
 }
 
 std::vector<Token> Lexer::tokenize() {
