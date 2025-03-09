@@ -119,7 +119,7 @@ TEST(LexerTest, CheckIf1) {
 };
 
 TEST(LexerTest, CheckFive) {
-  std::string text = "5 ";
+  std::string text = "5";
 
   TokenStream ts = lex(text, "lib.rs");
 
@@ -201,7 +201,7 @@ TEST(LexerTest, CheckAnd) {
 };
 
 TEST(LexerTest, CheckAndAnd) {
-  std::string text = "&& && ";
+  std::string text = "&& &&";
 
   TokenStream ts = lex(text, "lib.rs");
 
