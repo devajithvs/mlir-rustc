@@ -152,19 +152,19 @@ class Token {
   //      content;
 
 public:
-  Token(rust_compiler::Location loc, TokenKind tk) : loc(loc), kind(tk){};
+  Token(rust_compiler::Location loc, TokenKind tk) : loc(loc), kind(tk) {};
   Token(rust_compiler::Location loc, TokenKind tk, std::string_view id)
-      : loc(loc), kind(tk), storage(id){};
+      : loc(loc), kind(tk), storage(id) {};
 
   Token(rust_compiler::Location loc, TokenKind tk, std::string_view id,
         TypeHint hint)
-    : loc(loc), kind(tk), storage(id), hint(hint){};
+      : loc(loc), kind(tk), storage(id), hint(hint) {};
 
   Token(rust_compiler::Location loc, KeyWordKind kw, std::string_view id)
-      : loc(loc), kind(TokenKind::Keyword), storage(id), kw(kw){};
+      : loc(loc), kind(TokenKind::Keyword), storage(id), kw(kw) {};
 
   Token(rust_compiler::Location loc, TokenKind tk, adt::Utf8String id)
-      : loc(loc), kind(tk), utf8Storage(id){};
+      : loc(loc), kind(tk), utf8Storage(id) {};
 
   //  Token(rust_compiler::Location loc, IntegerKind ik)
   //      : loc(loc), kind(TokenKind::Integer), ik(ik){};

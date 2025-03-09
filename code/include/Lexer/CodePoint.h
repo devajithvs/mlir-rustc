@@ -9,14 +9,15 @@ class CodePoint {
 
 public:
   CodePoint() : value(0) {}
-  CodePoint(uint32_t value) : value(value) {}
+  explicit CodePoint(uint32_t value) : value(value) {}
   bool isspace() const;
   bool isdigit() const;
   bool isxdigit() const;
-  bool operator==(char x) { return value == static_cast<uint32_t>(x); }
-  bool operator!=(char x) { return value != static_cast<uint32_t>(x); }
-  bool operator==(CodePoint x) { return value == x.value; }
-  bool operator!=(CodePoint x) { return value != x.value; }
+
+  bool operator==(char x) const { return value == static_cast<uint32_t>(x); }
+  bool operator!=(char x) const { return value != static_cast<uint32_t>(x); }
+  bool operator==(const CodePoint &x) const { return value == x.value; }
+  bool operator!=(const CodePoint &x) const { return value != x.value; }
 };
 
 } // namespace rust_compiler::lexer
